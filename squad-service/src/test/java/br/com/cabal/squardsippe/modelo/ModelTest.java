@@ -15,7 +15,7 @@ public class ModelTest {
     @Before
     public void setUp() {
         tester = new GetterAndSetterTester();
-        Reflections reflections = new Reflections("br.com.cabal.squadsippe.model.*");
+        Reflections reflections = new Reflections("br.com.cabal.squardsippe.model");
         allClasses = reflections.getSubTypesOf(Serializable.class);
     }
 

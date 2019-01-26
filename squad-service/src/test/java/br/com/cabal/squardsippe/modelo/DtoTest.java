@@ -15,7 +15,7 @@ public class DtoTest {
     @Before
     public void setUp() {
         tester = new GetterAndSetterTester();
-        Reflections reflections = new Reflections("br.com.cabal.squadsippe.model.dto.*");
+        Reflections reflections = new Reflections("br.com.cabal.squardsippe.model.dto");
         allClasses = reflections.getSubTypesOf(Serializable.class);
     }
 
