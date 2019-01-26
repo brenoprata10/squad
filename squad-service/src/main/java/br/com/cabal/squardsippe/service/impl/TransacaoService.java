@@ -1,10 +1,7 @@
 package br.com.cabal.squardsippe.service.impl;
 
 import br.com.cabal.squardsippe.exception.SaldoIndisponivelException;
-import br.com.cabal.squardsippe.model.Agencia;
-import br.com.cabal.squardsippe.model.Banco;
-import br.com.cabal.squardsippe.model.Conta;
-import br.com.cabal.squardsippe.model.Transacao;
+import br.com.cabal.squardsippe.model.*;
 import br.com.cabal.squardsippe.model.dto.ContaDTO;
 import br.com.cabal.squardsippe.model.dto.DepositoDTO;
 import br.com.cabal.squardsippe.model.dto.SaqueDTO;
@@ -20,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Optional;
 
 @Service
@@ -69,6 +67,9 @@ public class TransacaoService implements ITransacaoService{
         banco.setId(saqueDTO.getCodigoBanco());
         transacao.setBanco(banco);
         transacao.setDataTransacao(LocalDateTime.now());
+        Conta conta = new Conta();
+        conta.setId(saqueDTO.getCodigoConta());
+        transacao.setContaOrigem(conta);
         transacao.setSaldoAnterior(contaDTO.getSaldo().add(saqueDTO.getValor()));
         transacao.setSaldoPosterior(contaDTO.getSaldo());
         Transacao save = this.transacaoRepository.save(transacao);
@@ -76,12 +77,40 @@ public class TransacaoService implements ITransacaoService{
     }
 
     @Override
-    public void gerarTransferencia(TransacaoDTO transacaoDTO) {
+    public Transacao gerarTransferencia(TransacaoDTO transacaoDTO) {
 
-        //TODO falra service banco
+        ContaDTO contaOrigem = this.contaService.buscarIdUsuarioAndContaAndAgencia(transacaoDTO.getCodigoUsuario(), transacaoDTO.getCodigocontaOrigem(), transacaoDTO.getCodigoAgencia());
+        ContaDTO contaDestino = this.contaService.buscarIdUsuarioAndContaAndAgencia(transacaoDTO.getCodigoUsuario(), transacaoDTO.getCodigoContaDestino(), transacaoDTO.getCodigoAgencia());
+
+        if (contaOrigem.getSaldo().floatValue() < transacaoDTO.getValor().floatValue()) {
+            throw new SaldoIndisponivelException("saldo insuficiente para tranferencia, seu saldo é: " + contaOrigem.getSaldo());
+        }
+        contaDestino.setSaldo(contaDestino.getSaldo().add(transacaoDTO.getValor()));
+        contaOrigem.setSaldo(contaDestino.getSaldo().subtract(transacaoDTO.getValor()));
+
+        this.contaService.salvar(contaOrigem);
+        this.contaService.salvar(contaDestino);
+
         Transacao transacao = new Transacao();
-        this.transacaoRepository.save(transacao);
 
+
+        Agencia agencia = new Agencia();
+        agencia.setId(transacaoDTO.getCodigoAgencia());
+        transacao.setAgencia(agencia);
+        Banco banco = new Banco();
+        banco.setId(transacaoDTO.getCodigoBanco());
+        transacao.setBanco(banco);
+        transacao.setDataTransacao(LocalDateTime.now());
+        transacao.setSaldoAnterior(contaOrigem.getSaldo().add(transacaoDTO.getValor()));
+        transacao.setSaldoPosterior(contaOrigem.getSaldo());
+        Conta contaOrigemT = new Conta();
+        contaOrigem.setId(transacaoDTO.getCodigocontaOrigem());
+        transacao.setContaOrigem(contaOrigemT);
+        Conta contaDestinoT = new Conta();
+        contaDestinoT.setId(transacaoDTO.getCodigoContaDestino());
+
+        Transacao save = this.transacaoRepository.save(transacao);
+        return save;
     }
 
     @Override

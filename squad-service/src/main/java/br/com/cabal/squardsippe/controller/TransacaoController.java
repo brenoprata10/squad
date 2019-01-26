@@ -35,8 +35,8 @@ public class TransacaoController {
     }
 
     @PostMapping(value = "/transferencia")
-    public void gerarTransferencia(@RequestBody TransacaoDTO transacaoDTO) {
-
+    public Transacao gerarTransferencia(@RequestBody TransacaoDTO transacaoDTO) {
+        return this.transacaoService.gerarTransferencia(transacaoDTO);
     }
 
     @PostMapping(value = "/deposito")

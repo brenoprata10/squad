@@ -14,7 +14,7 @@ public interface ITransacaoService {
 
 	Transacao gerarSaque(SaqueDTO saqueDTO);
 
-	void gerarTransferencia(@RequestBody TransacaoDTO transacaoDTO);
+	Transacao gerarTransferencia(@RequestBody TransacaoDTO transacaoDTO);
 
 	void gerarDeposito(@RequestBody DepositoDTO depositoDTO);
 }

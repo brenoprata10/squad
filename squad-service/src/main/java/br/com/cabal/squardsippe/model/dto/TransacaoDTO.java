@@ -16,16 +16,17 @@ import java.time.LocalDateTime;
 public class TransacaoDTO implements Serializable {
 
     private Long id;
+    private Long codigoUsuario;
     private LocalDateTime dataTransacao;
     private BigDecimal valor;
     private BigDecimal saldoPosterior;
     private BigDecimal saldoAnterior;
     private LocalDateTime dataDebito;
-    private String contaDestino;
-    private String codigoAgenciaDestino;
-    private Agencia agencia;
-    private Banco banco;
-    private Conta contaOrigem;
+    private Long codigocontaOrigem;
+    private Long codigoAgenciaDestino;
+    private Long codigoAgencia;
+    private Long codigoBanco;
+    private Long codigoContaDestino;
     private TipoMovimentacao tipoMovimentacao;
     private TipoTransacao tipoTransacao;
 }
