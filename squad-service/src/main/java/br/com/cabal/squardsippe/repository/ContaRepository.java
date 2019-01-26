@@ -10,4 +10,7 @@ import java.util.List;
 
 @Repository
 public interface ContaRepository extends JpaRepository<Conta, Long> {
+
+    @Query(value = "SELECT * FROM tb_conta WHERE cod_usuario = ?")
+    List<Conta> findByIdUsuario(Long id);
 }

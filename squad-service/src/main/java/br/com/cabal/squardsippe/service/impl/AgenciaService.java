@@ -20,27 +20,27 @@ public class AgenciaService implements IAgenciaService {
 
     public List<AgenciaDTO> listar() {
 
-        List<AgenciaDTO> usuarioDTOS = new ArrayList<>();
+        List<AgenciaDTO> agenciaDTOS = new ArrayList<>();
         this.agenciaRepository.findAll().forEach(u -> {
-            AgenciaDTO usuarioDTO = new AgenciaDTO();
-            BeanUtils.copyProperties(u, usuarioDTO);
-            usuarioDTOS.add(usuarioDTO);
+            AgenciaDTO agenciaDTO = new AgenciaDTO();
+            BeanUtils.copyProperties(u, agenciaDTO);
+            agenciaDTOS.add(agenciaDTO);
         });
-        return usuarioDTOS;
+        return agenciaDTOS;
     }
 
-    public AgenciaDTO salvar(AgenciaDTO usuarioDTO) {
-        Agencia usuario = new Agencia();
-        BeanUtils.copyProperties(usuarioDTO, usuario);
-        this.agenciaRepository.save(usuario);
-        BeanUtils.copyProperties(usuario, usuarioDTO);
-        return usuarioDTO;
+    public AgenciaDTO salvar(AgenciaDTO agenciaDTO) {
+        Agencia agencia = new Agencia();
+        BeanUtils.copyProperties(agenciaDTO, agencia);
+        this.agenciaRepository.save(agencia);
+        BeanUtils.copyProperties(agencia, agenciaDTO);
+        return agenciaDTO;
     }
 
     public AgenciaDTO buscarPorId(Long id) {
         Optional<Agencia> optional = this.agenciaRepository.findById(id);
-        AgenciaDTO usuarioDTO = new AgenciaDTO();
-        BeanUtils.copyProperties(optional.get(), usuarioDTO);
-        return usuarioDTO;
+        AgenciaDTO agenciaDTO = new AgenciaDTO();
+        BeanUtils.copyProperties(optional.get(), agenciaDTO);
+        return agenciaDTO;
     }
 }
