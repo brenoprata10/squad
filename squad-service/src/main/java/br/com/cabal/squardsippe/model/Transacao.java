@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.Id;
@@ -19,6 +20,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@Entity
 @Table(name = "tb_transacao", schema = "sippe")
 public class Transacao implements Serializable {
 
@@ -58,6 +60,7 @@ public class Transacao implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cod_agencia",
             foreignKey = @ForeignKey(name = "fk_transacao_agencia"))
+    @NotNull(message = "A agência não pode ser vazia")
     private Agencia agencia;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -22,7 +22,7 @@ public class TipoConta implements Serializable {
     @Column(name = "cod_tipo_conta")
     private Long id;
 
-    @Column(name = "descricao")
+    @Column(name = "descricao", nullable = false)
     @NotEmpty(message = "A descrição não pode ser vazia")
     private String descricao;
 }

@@ -30,7 +30,7 @@ public class Conta implements Serializable {
     @Column(name = "cod_conta")
     private Long id;
 
-    @Column(name = "numero_conta")
+    @Column(name = "numero_conta", nullable = false)
     @NotEmpty(message = "O número conta não pode ser vazio")
     private String numeroConta;
 
@@ -48,6 +48,7 @@ public class Conta implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cod_usuario",
             foreignKey = @ForeignKey(name = "fk_conta_usuario"))
+    @NotNull(message = "O usuário não pode ser vazio")
     private Usuario usuario;
 
     @OneToOne(fetch = FetchType.LAZY)
@@ -59,5 +60,6 @@ public class Conta implements Serializable {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cod_agencia",
             foreignKey = @ForeignKey(name = "fk_conta_agencia"))
+    @NotNull(message = "A agencia não pode ser vazia")
     private Agencia agencia;
 }
