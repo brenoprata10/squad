@@ -2,6 +2,7 @@ package br.com.cabal.squardsippe.controller;
 
 import br.com.cabal.squardsippe.model.dto.DepositoDTO;
 import br.com.cabal.squardsippe.model.dto.SaqueDTO;
+import br.com.cabal.squardsippe.model.dto.TransacaoDTO;
 import br.com.cabal.squardsippe.service.ITransacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,18 +25,18 @@ public class TransacaoController {
     }
 
     @PostMapping(value = "/saque")
-    public void gerarSaque(SaqueDTO saqueDTO) {
+    public void gerarSaque(@RequestBody SaqueDTO saqueDTO) {
 
 
     }
 
     @PostMapping(value = "/transferencia")
-    public void gerarTransferencia() {
+    public void gerarTransferencia(@RequestBody TransacaoDTO transacaoDTO) {
 
     }
 
     @PostMapping(value = "/deposito")
-    public void gerarDeposito(DepositoDTO depositoDTO) {
+    public void gerarDeposito(@RequestBody DepositoDTO depositoDTO) {
 
     }
 

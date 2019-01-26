@@ -21,7 +21,19 @@ public class ContaDTO implements Serializable {
     private String numeroConta;
     private BigDecimal saldo;
     private Boolean ativa;
+    private LocalDateTime dataAtualizacao;
     private Usuario usuario;
     private TipoConta tipoConta;
     private Agencia agencia;
+
+    public ContaDTO(Long id, String numeroConta, BigDecimal saldo, Boolean ativa, LocalDateTime dataAtualizacao, Usuario usuario, TipoConta tipoConta, Agencia agencia) {
+        this.id = id;
+        this.numeroConta = numeroConta;
+        this.saldo = saldo;
+        this.ativa = ativa;
+        this.dataAtualizacao = dataAtualizacao;
+        this.usuario = usuario;
+        this.tipoConta = tipoConta;
+        this.agencia = agencia;
+    }
 }

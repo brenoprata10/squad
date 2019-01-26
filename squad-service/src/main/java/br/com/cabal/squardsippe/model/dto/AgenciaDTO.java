@@ -15,4 +15,9 @@ public class AgenciaDTO implements Serializable {
 
     private Long id;
     private String numero;
+
+    public AgenciaDTO(Long id, String numero) {
+        this.id = id;
+        this.numero = numero;
+    }
 }
