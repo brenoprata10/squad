@@ -8,7 +8,9 @@ public interface IContaService {
 
     List<ContaDTO> listar();
 
-    List<ContaDTO> buscarId(Long id);
+    List<ContaDTO> buscarIdUsuario(Long id);
+
+    ContaDTO buscarIdUsuarioAndContaAndAgencia(Long idUsuario, Long idConta, Long idAgencia);
 
     ContaDTO salvar(ContaDTO agenciaDTO);
 }
