@@ -10,6 +10,6 @@ import java.util.List;
 
 @Repository
 public interface BancoRepository extends JpaRepository<Banco, Long> {
-    @Query("SELECT new br.com.cabal.squardsippe.model.dto.BancoDTO(cod_banco, nome) FROM tb_banco")
+    @Query("SELECT new br.com.cabal.squardsippe.model.dto.BancoDTO(b.id, b.nome) FROM Banco b")
     List<BancoDTO> buscarTodos();
 }

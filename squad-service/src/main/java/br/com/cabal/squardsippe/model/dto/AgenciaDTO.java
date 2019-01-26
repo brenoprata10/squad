@@ -20,4 +20,7 @@ public class AgenciaDTO implements Serializable {
         this.id = id;
         this.numero = numero;
     }
+
+    public AgenciaDTO() {
+    }
 }

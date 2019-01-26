@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface TipoContaRepository extends JpaRepository<TipoConta, Long> {
 
-    @Query("SELECT new br.com.cabal.squardsippe.model.dto.TipoConta(cod_tipo_conta, descricao) FROM tb_tipo_conta")
+    @Query("SELECT new br.com.cabal.squardsippe.model.dto.TipoContaDTO(tc.id, tc.descricao) FROM TipoConta tc ")
     List<TipoContaDTO> buscarTodos();
 }

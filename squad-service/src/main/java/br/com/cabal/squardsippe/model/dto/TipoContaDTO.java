@@ -16,4 +16,12 @@ public class TipoContaDTO implements Serializable {
 
     private Long id;
     private String descricao;
+
+    public TipoContaDTO() {
+    }
+
+    public TipoContaDTO(Long id, String descricao) {
+        this.id = id;
+        this.descricao = descricao;
+    }
 }

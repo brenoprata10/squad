@@ -1,5 +1,7 @@
 package br.com.cabal.squardsippe.service.impl;
 
+import br.com.cabal.squardsippe.exception.ObjectAlreadyExistException;
+import br.com.cabal.squardsippe.exception.ObjectNotFoundException;
 import br.com.cabal.squardsippe.model.Usuario;
 import br.com.cabal.squardsippe.model.dto.UsuarioDTO;
 import br.com.cabal.squardsippe.repository.UsuarioRepository;
@@ -33,7 +35,7 @@ public class UsuarioService implements IUsuarioService {
     public UsuarioDTO salvar(UsuarioDTO usuarioDTO) {
 
         if (usuarioDTO.getId() != null && exist(usuarioDTO.getId())) {
-            throw new RuntimeException("Usuário já está cadastrado no banco de dados" + usuarioDTO.getId());
+            throw new ObjectAlreadyExistException("Usuário já está cadastrado no banco de dados" + usuarioDTO.getId());
         }
         
         Usuario usuario = new Usuario();
@@ -47,7 +49,7 @@ public class UsuarioService implements IUsuarioService {
     public UsuarioDTO buscarPorId(Long id) {
 
         if(!exist(id)){
-            throw new RuntimeException("Usuario com esse id não existe: " + id);
+            throw new ObjectNotFoundException("Usuario com esse id não existe: " + id);
         }
 
         Optional<Usuario> optional = this.usuarioRepository.findById(id);
@@ -58,9 +60,9 @@ public class UsuarioService implements IUsuarioService {
 
     @Transactional
     public UsuarioDTO atualizar(UsuarioDTO usuarioDTO) {
-        if (exist(usuarioDTO.getId())) {
-            throw new RuntimeException("Pessoa com esse id não existe: " + usuarioDTO.getId());
-        }
+
+        ValidarExisteNoBanco(usuarioDTO);
+
         Usuario usuario = new Usuario();
         BeanUtils.copyProperties(usuarioDTO, usuario);
         Usuario usuarioSalvo = this.usuarioRepository.save(usuario);
@@ -72,9 +74,18 @@ public class UsuarioService implements IUsuarioService {
 
     @Transactional
     public void delete(UsuarioDTO usuarioDTO) {
+
+        ValidarExisteNoBanco(usuarioDTO);
+
         Usuario usuario = new Usuario();
         BeanUtils.copyProperties(usuarioDTO, usuario);
         usuarioRepository.delete(usuario);
+    }
+
+    private void ValidarExisteNoBanco(UsuarioDTO usuarioDTO) {
+        if (exist(usuarioDTO.getId())) {
+            throw new ObjectNotFoundException("Pessoa com esse id não existe: " + usuarioDTO.getId());
+        }
     }
 
     private boolean exist(Long id) {
