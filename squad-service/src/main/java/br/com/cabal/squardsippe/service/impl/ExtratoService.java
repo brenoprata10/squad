@@ -51,8 +51,8 @@ public class ExtratoService implements IExtratoService {
         builder.append(" ");
 
         builder.append(transacaoDTO.getTipoMovimentacao().getNome());
-        builder.append(transacaoDTO.getContaOrigem().getAgencia().getNumero());
-        builder.append(transacaoDTO.getContaOrigem().getNumeroConta());
+        builder.append(transacaoDTO.getCodigocontaOrigem());
+//        builder.append(transacaoDTO.ge);
 
         return builder.toString();
     }
