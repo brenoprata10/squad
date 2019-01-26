@@ -1,8 +1,9 @@
-package br.com.cabal.squardsippe.service;
+package br.com.cabal.squardsippe.service.impl;
 
 import br.com.cabal.squardsippe.model.Agencia;
 import br.com.cabal.squardsippe.model.dto.AgenciaDTO;
 import br.com.cabal.squardsippe.repository.AgenciaRepository;
+import br.com.cabal.squardsippe.service.IAgenciaService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AgenciaService {
+public class AgenciaService implements IAgenciaService {
 
     @Autowired
     private AgenciaRepository agenciaRepository;
