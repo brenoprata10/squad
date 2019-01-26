@@ -36,4 +36,7 @@ public class ContaDTO implements Serializable {
         this.tipoConta = tipoConta;
         this.agencia = agencia;
     }
+
+    public ContaDTO() {
+    }
 }

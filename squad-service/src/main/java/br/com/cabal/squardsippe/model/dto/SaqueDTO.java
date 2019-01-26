@@ -12,6 +12,7 @@ public class SaqueDTO implements Serializable {
 
     private Long codigoUsuario;
     private BigDecimal Valor;
-    private String conta;
-    private String agencia;
+    private Long codigoConta;
+    private Long codigoAgencia;
+    private Long codigoBanco;
 }

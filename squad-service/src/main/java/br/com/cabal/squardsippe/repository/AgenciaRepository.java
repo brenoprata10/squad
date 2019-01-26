@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface AgenciaRepository extends JpaRepository<Agencia, Long> {
 
-    @Query("SELECT new br.com.cabal.squardsippe.model.dto.AgenciaDTO(cod_agencia, numero) FROM tb_agencia")
+    @Query("SELECT new br.com.cabal.squardsippe.model.dto.AgenciaDTO(a.id, a.numero) FROM Agencia a")
     List<AgenciaDTO> buscarTodos();
 }

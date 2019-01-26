@@ -1,5 +1,6 @@
 package br.com.cabal.squardsippe.service;
 
+import br.com.cabal.squardsippe.model.Transacao;
 import br.com.cabal.squardsippe.model.dto.DepositoDTO;
 import br.com.cabal.squardsippe.model.dto.SaqueDTO;
 import br.com.cabal.squardsippe.model.dto.TransacaoDTO;
@@ -11,7 +12,7 @@ public interface ITransacaoService {
 
 	TransacaoDTO buscarPorId(Long id);
 
-	void gerarSaque(SaqueDTO saqueDTO);
+	Transacao gerarSaque(SaqueDTO saqueDTO);
 
 	void gerarTransferencia(@RequestBody TransacaoDTO transacaoDTO);
 
