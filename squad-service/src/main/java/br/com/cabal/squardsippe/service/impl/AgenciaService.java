@@ -4,6 +4,7 @@ import br.com.cabal.squardsippe.model.Agencia;
 import br.com.cabal.squardsippe.model.dto.AgenciaDTO;
 import br.com.cabal.squardsippe.repository.AgenciaRepository;
 import br.com.cabal.squardsippe.service.IAgenciaService;
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,14 +20,7 @@ public class AgenciaService implements IAgenciaService {
     private AgenciaRepository agenciaRepository;
 
     public List<AgenciaDTO> listar() {
-
-        List<AgenciaDTO> agenciaDTOS = new ArrayList<>();
-        this.agenciaRepository.findAll().forEach(u -> {
-            AgenciaDTO agenciaDTO = new AgenciaDTO();
-            BeanUtils.copyProperties(u, agenciaDTO);
-            agenciaDTOS.add(agenciaDTO);
-        });
-        return agenciaDTOS;
+       return agenciaRepository.buscarTodos();
     }
 
     public AgenciaDTO salvar(AgenciaDTO agenciaDTO) {

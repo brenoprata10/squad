@@ -13,4 +13,5 @@ public class DepositoDTO implements Serializable {
     private String conta;
     private String numeroConta;
     private Long codigoBanco;
+
 }
