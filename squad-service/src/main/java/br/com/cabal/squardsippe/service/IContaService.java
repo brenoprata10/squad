@@ -8,5 +8,7 @@ public interface IContaService {
 
     List<ContaDTO> listar();
 
+    List<ContaDTO> buscarId(Long id);
+
     ContaDTO salvar(ContaDTO agenciaDTO);
 }
