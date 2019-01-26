@@ -3,14 +3,7 @@ package br.com.cabal.squardsippe.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -19,6 +12,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@Entity
 @Table(name = "tb_transacao", schema = "sippe")
 public class Transacao implements Serializable {
 
