@@ -1,7 +1,5 @@
-package br.com.cabal.squardsippe;
+package br.com.cabal.squardsippe.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
@@ -9,28 +7,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.cabal.squardsippe.model.Transacao;
+import br.com.cabal.squardsippe.model.dto.TransacaoDTO;
 import br.com.cabal.squardsippe.repository.TransacaoRepository;
+import br.com.cabal.squardsippe.service.ITransacaoService;
 
 @Service
-public class TransacaoService {
+public class TransacaoService  implements ITransacaoService{
 
     @Autowired
     private TransacaoRepository transacaoRepository;
 
-    public List<TransacaoDTO> listar() {
-
-        List<TransacaoDTO> transacaoDTOS = new ArrayList<>();
-        this.transacaoRepository.findAll().forEach(u -> {
-        	TransacaoDTO transacaoDTO = new TransacaoDTO();
-            BeanUtils.copyProperties(u, transacaoDTO);
-            usuarioDTOS.add(transacaoDTO);
-        });
-        return transacaoDTOS;
-    }
 
     public TransacaoDTO salvar(TransacaoDTO transacaoDTO) {
 		Transacao transacao = new Transacao();
-    	BeanUtils.copyProperties(TransacaoDTO, transacao);
+    	BeanUtils.copyProperties(transacaoDTO, transacao);
         this.transacaoRepository.save(transacao);
         BeanUtils.copyProperties(transacao, transacaoDTO);
         return transacaoDTO;
