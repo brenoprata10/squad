@@ -2,6 +2,7 @@ package br.com.cabal.squardsippe;
 
 import br.com.cabal.squardsippe.model.Transacao;
 import br.com.cabal.squardsippe.model.Usuario;
+import br.com.cabal.squardsippe.model.dto.TransacaoDTO;
 import br.com.cabal.squardsippe.model.dto.UsuarioDTO;
 import br.com.cabal.squardsippe.repository.TransacaoRepository;
 import br.com.cabal.squardsippe.repository.UsuarioRepository;
@@ -25,14 +26,14 @@ public class TransacaoService {
         this.transacaoRepository.findAll().forEach(u -> {
         	TransacaoDTO transacaoDTO = new TransacaoDTO();
             BeanUtils.copyProperties(u, transacaoDTO);
-            usuarioDTOS.add(transacaoDTO);
+            transacaoDTOS.add(transacaoDTO);
         });
         return transacaoDTOS;
     }
 
     public TransacaoDTO salvar(TransacaoDTO transacaoDTO) {
 		Transacao transacao = new Transacao();
-    	BeanUtils.copyProperties(TransacaoDTO, transacao);
+    	BeanUtils.copyProperties(transacaoDTO, transacao);
         this.transacaoRepository.save(transacao);
         BeanUtils.copyProperties(transacao, transacaoDTO);
         return transacaoDTO;

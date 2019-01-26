@@ -60,7 +60,6 @@ public class Transacao implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cod_agencia",
             foreignKey = @ForeignKey(name = "fk_transacao_agencia"))
-    @NotNull(message = "A agência não pode ser vazia")
     private Agencia agencia;
 
     @ManyToOne(fetch = FetchType.LAZY)
