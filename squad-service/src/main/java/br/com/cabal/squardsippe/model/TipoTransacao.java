@@ -22,7 +22,7 @@ public class TipoTransacao implements Serializable {
     @Column(name = "cod_tipo_transacao")
     private Long id;
 
-    @Column(name = "nome")
+    @Column(name = "nome", nullable = false)
     @NotEmpty(message = "O nome não pode ser vazio")
     private String nome;
 }

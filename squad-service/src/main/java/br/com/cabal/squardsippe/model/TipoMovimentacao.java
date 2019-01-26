@@ -22,7 +22,7 @@ public class TipoMovimentacao implements Serializable {
     @Column(name = "cod_tipo_movimentacao")
     private Long id;
 
-    @Column(name = "nome")
+    @Column(name = "nome", nullable = false)
     @NotEmpty(message = "O nome não pode ser vazio")
     private String nome;
 }

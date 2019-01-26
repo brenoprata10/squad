@@ -22,7 +22,7 @@ public class Agencia implements Serializable {
     @Column(name = "cod_agencia")
     private Long id;
 
-    @Column(name = "numero")
+    @Column(name = "numero", nullable = false)
     @NotEmpty(message = "O número não pode ser vazio")
     private String numero;
 }
