@@ -1,5 +1,9 @@
 package br.com.cabal.squardsippe.controller;
 
+import br.com.cabal.squardsippe.model.dto.DepositoDTO;
+import br.com.cabal.squardsippe.model.dto.SaqueDTO;
+import br.com.cabal.squardsippe.service.ITransacaoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -10,6 +14,9 @@ import java.util.List;
 @RequestMapping(value = "transacao/api")
 public class TransacaoController {
 
+    @Autowired
+    private ITransacaoService transacaoService;
+
     @GetMapping(value = "/extrato/{dataInicio}/{dataFim}/{numeroConta}")
     public List<Object> gerarExtrato(@PathVariable LocalDate dataInicio, @PathVariable LocalDate dataFim, @PathVariable String numeroConta) {
 
@@ -17,7 +24,8 @@ public class TransacaoController {
     }
 
     @PostMapping(value = "/saque")
-    public void gerarSaque() {
+    public void gerarSaque(SaqueDTO saqueDTO) {
+
 
     }
 
@@ -27,7 +35,7 @@ public class TransacaoController {
     }
 
     @PostMapping(value = "/deposito")
-    public void gerarDeposito() {
+    public void gerarDeposito(DepositoDTO depositoDTO) {
 
     }
 

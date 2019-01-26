@@ -1,28 +1,28 @@
 package br.com.cabal.squardsippe.service.impl;
 
 import br.com.cabal.squardsippe.model.dto.BancoDTO;
-import br.com.cabal.squardsippe.repository.AgenciaRepository;
+import br.com.cabal.squardsippe.repository.BancoRepository;
 import br.com.cabal.squardsippe.service.IBancoService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class BancoService implements IBancoService {
 
     @Autowired
-    private AgenciaRepository agenciaRepository;
 
+    private BancoRepository bancoRepository;
+
+    @Override
     public List<BancoDTO> listar() {
-        List<BancoDTO> bancoDTOS = new ArrayList<>();
-        this.agenciaRepository.findAll().forEach(u -> {
+
+        return this.bancoRepository.findAll().stream().map(u -> {
             BancoDTO bancoDTO = new BancoDTO();
             BeanUtils.copyProperties(u, bancoDTO);
-            bancoDTOS.add(bancoDTO);
-        });
-        return bancoDTOS;
+            return bancoDTO;
+        }).collect(Collectors.toList());
     }
 }
