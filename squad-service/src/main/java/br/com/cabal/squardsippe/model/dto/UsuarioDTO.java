@@ -10,10 +10,7 @@ import java.io.Serializable;
 public class UsuarioDTO implements Serializable {
 
     private Long id;
-
     private String nome;
-
     private String cpf;
-
     private String email;
 }
