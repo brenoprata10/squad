@@ -1,9 +1,9 @@
-package br.com.cabal.squardsippe.service;
+package br.com.cabal.squardsippe.service.impl;
 
 import br.com.cabal.squardsippe.model.Usuario;
 import br.com.cabal.squardsippe.model.dto.UsuarioDTO;
 import br.com.cabal.squardsippe.repository.UsuarioRepository;
-import org.hibernate.ObjectNotFoundException;
+import br.com.cabal.squardsippe.service.IUsuarioService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UsuarioService {
+public class UsuarioService implements IUsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
@@ -33,6 +33,11 @@ public class UsuarioService {
 
     @Transactional(readOnly = true)
     public UsuarioDTO salvar(UsuarioDTO usuarioDTO) {
+
+        if (exist(usuarioDTO.getId())) {
+            throw new RuntimeException("Usuário já está cadastrado no banco de dados" + usuarioDTO.getId());
+        }
+        
         Usuario usuario = new Usuario();
         BeanUtils.copyProperties(usuarioDTO, usuario);
         this.usuarioRepository.save(usuario);
