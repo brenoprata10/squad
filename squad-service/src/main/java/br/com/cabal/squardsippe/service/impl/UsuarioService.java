@@ -16,68 +16,61 @@ import java.util.stream.Collectors;
 @Service
 public class UsuarioService implements IUsuarioService {
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+	@Autowired
+	private UsuarioRepository usuarioRepository;
 
-    @Transactional(readOnly = true)
-    public List<UsuarioDTO> listar() {
+	@Transactional(readOnly = true)
+	public List<UsuarioDTO> listar() {
 
-        return this.usuarioRepository.findAll().stream().map(u -> {
-            UsuarioDTO usuarioDTO = new UsuarioDTO();
-            BeanUtils.copyProperties(u, usuarioDTO);
-            return usuarioDTO;
-        }).collect(Collectors.toList());
-    }
+		return usuarioRepository.listar();
+	}
 
-    @Transactional(readOnly = true)
-    public UsuarioDTO salvar(UsuarioDTO usuarioDTO) {
+	@Transactional(readOnly = true)
+	public UsuarioDTO salvar(UsuarioDTO usuarioDTO) {
 
-        if (usuarioDTO.getId() != null && exist(usuarioDTO.getId())) {
-            throw new RuntimeException("Usuário já está cadastrado no banco de dados" + usuarioDTO.getId());
-        }
-        
-        Usuario usuario = new Usuario();
-        BeanUtils.copyProperties(usuarioDTO, usuario);
-        this.usuarioRepository.save(usuario);
-        BeanUtils.copyProperties(usuario, usuarioDTO);
-        return usuarioDTO;
-    }
+		if (usuarioDTO.getId() != null && exist(usuarioDTO.getId())) {
+			throw new RuntimeException("Usuário já está cadastrado no banco de dados" + usuarioDTO.getId());
+		}
 
-    @Transactional(readOnly = true)
-    public UsuarioDTO buscarPorId(Long id) {
+		Usuario usuario = new Usuario();
+		BeanUtils.copyProperties(usuarioDTO, usuario);
+		this.usuarioRepository.save(usuario);
+		BeanUtils.copyProperties(usuario, usuarioDTO);
+		return usuarioDTO;
+	}
 
-        if(!exist(id)){
-            throw new RuntimeException("Usuario com esse id não existe: " + id);
-        }
+	@Transactional(readOnly = true)
+	public UsuarioDTO buscarPorId(Long id) {
 
-        Optional<Usuario> optional = this.usuarioRepository.findById(id);
-        UsuarioDTO usuarioDTO = new UsuarioDTO();
-        BeanUtils.copyProperties(optional.get(), usuarioDTO);
-        return usuarioDTO;
-    }
+		if (!exist(id)) {
+			throw new RuntimeException("Usuario com esse id não existe: " + id);
+		}
+		return usuarioRepository.buscarPorId(id);
+		
+	}
 
-    @Transactional
-    public UsuarioDTO atualizar(UsuarioDTO usuarioDTO) {
-        if (exist(usuarioDTO.getId())) {
-            throw new RuntimeException("Pessoa com esse id não existe: " + usuarioDTO.getId());
-        }
-        Usuario usuario = new Usuario();
-        BeanUtils.copyProperties(usuarioDTO, usuario);
-        Usuario usuarioSalvo = this.usuarioRepository.save(usuario);
+	@Transactional
+	public UsuarioDTO atualizar(UsuarioDTO usuarioDTO) {
+		if (exist(usuarioDTO.getId())) {
+			throw new RuntimeException("Pessoa com esse id não existe: " + usuarioDTO.getId());
+		}
+		Usuario usuario = new Usuario();
+		BeanUtils.copyProperties(usuarioDTO, usuario);
+		Usuario usuarioSalvo = this.usuarioRepository.save(usuario);
 
-        BeanUtils.copyProperties(usuarioSalvo, usuarioDTO);
+		BeanUtils.copyProperties(usuarioSalvo, usuarioDTO);
 
-        return usuarioDTO;
-    }
+		return usuarioDTO;
+	}
 
-    @Transactional
-    public void delete(UsuarioDTO usuarioDTO) {
-        Usuario usuario = new Usuario();
-        BeanUtils.copyProperties(usuarioDTO, usuario);
-        usuarioRepository.delete(usuario);
-    }
+	@Transactional
+	public void delete(UsuarioDTO usuarioDTO) {
+		Usuario usuario = new Usuario();
+		BeanUtils.copyProperties(usuarioDTO, usuario);
+		usuarioRepository.delete(usuario);
+	}
 
-    private boolean exist(Long id) {
-        return usuarioRepository.existsById(id);
-    }
+	private boolean exist(Long id) {
+		return usuarioRepository.existsById(id);
+	}
 }
