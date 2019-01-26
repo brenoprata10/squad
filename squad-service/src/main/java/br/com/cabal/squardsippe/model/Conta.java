@@ -51,11 +51,6 @@ public class Conta implements Serializable {
     private Usuario usuario;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cod_banco",
-            foreignKey = @ForeignKey(name = "fk_conta_banco"))
-    private Banco banco;
-
-    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cod_tipo_conta",
             foreignKey = @ForeignKey(name = "fk_conta_tipo_conta"))
     @NotNull(message = "O tipo da conta não pode ser vazio")
