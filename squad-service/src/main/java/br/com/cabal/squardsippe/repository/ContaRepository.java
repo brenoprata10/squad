@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface ContaRepository extends JpaRepository<Conta, Long> {
 
-    @Query(value = "SELECT new br.com.cabal.squardsippe.model.dto.ContaDTO(cod_conta, numero_conta,saldo,ativa,dt_atualizacao,cod_usuario,cod_tipo_conta,cod_agencia) FROM tb_conta WHERE cod_usuario = ?")
+    @Query("SELECT new br.com.cabal.squardsippe.model.dto.ContaDTO(cod_conta, numero_conta,saldo,ativa,dt_atualizacao,cod_usuario,cod_tipo_conta,cod_agencia) FROM tb_conta WHERE cod_usuario = ?")
     List<ContaDTO> findByIdUsuario(Long id);
 
     @Query("SELECT new br.com.cabal.squardsippe.model.dto.ContaDTO(cod_conta, numero_conta,saldo,ativa,dt_atualizacao,cod_usuario,cod_tipo_conta,cod_agencia) FROM tb_conta")
