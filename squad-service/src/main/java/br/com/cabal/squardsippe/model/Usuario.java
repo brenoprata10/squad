@@ -24,15 +24,15 @@ public class Usuario implements Serializable {
     @Column(name = "cod_usuario")
     private Long id;
 
-    @Column(name = "nome")
+    @Column(name = "nome", nullable = false)
     @NotEmpty(message = "O nome do usuário não deve ser vazio")
     private String nome;
 
-    @Column(name = "cpf")
+    @Column(name = "cpf", nullable = false)
     @NotEmpty(message = "O CPF não pode ser vazio")
     private String cpf;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     @NotEmpty(message = "O email não pode ser vazio")
     private String email;
 
