@@ -18,11 +18,6 @@ public class TipoContaService implements ITipoContaService {
 
     @Override
     public List<TipoContaDTO> listar() {
-
-        return this.tipoContaRepository.findAll().stream().map(tipoConta -> {
-            TipoContaDTO tipoContaDTO = new TipoContaDTO();
-            BeanUtils.copyProperties(tipoConta, tipoContaDTO);
-            return tipoContaDTO;
-        }).collect(Collectors.toList());
+        return this.tipoContaRepository.buscarTodos();
     }
 }

@@ -21,13 +21,7 @@ public class ContaService implements IContaService {
     private UsuarioService usuarioService;
 
     public List<ContaDTO> listar() {
-        List<ContaDTO> contaDTOS = new ArrayList<>();
-        this.contaRepository.findAll().forEach(conta -> {
-            ContaDTO contaDTO = new ContaDTO();
-            BeanUtils.copyProperties(conta, contaDTO);
-            contaDTOS.add(contaDTO);
-        });
-        return contaDTOS;
+        return this.contaRepository.buscarTodos();
     }
 
     @Override
@@ -40,13 +34,6 @@ public class ContaService implements IContaService {
     }
 
     public List<ContaDTO> buscarId(Long id) {
-        List<ContaDTO> contaDTOS = new ArrayList<>();
-
-        this.contaRepository.findByIdUsuario(id).forEach(conta -> {
-            ContaDTO contaDTO = new ContaDTO();
-            BeanUtils.copyProperties(conta, contaDTO);
-            contaDTOS.add(contaDTO);
-        });
-        return contaDTOS;
+        return this.contaRepository.findByIdUsuario(id);
     }
 }
