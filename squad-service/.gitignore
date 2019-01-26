@@ -3,6 +3,7 @@
 /mvnw
 mvnw.cmd
 .mvn/
+*.iml
 
 ### STS ###
 .apt_generated
