@@ -1,7 +1,7 @@
 package br.com.cabal.squardsippe.service.impl;
 
 import br.com.cabal.squardsippe.model.dto.TipoContaDTO;
-import br.com.cabal.squardsippe.repository.BancoRepository;
+import br.com.cabal.squardsippe.repository.TipoContaRepository;
 import br.com.cabal.squardsippe.service.ITipoContaService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +14,12 @@ import java.util.stream.Collectors;
 public class TipoContaService implements ITipoContaService {
 
     @Autowired
-    private BancoRepository bancoRepository;
+    private TipoContaRepository tipoContaRepository;
 
     @Override
     public List<TipoContaDTO> listar() {
 
-        return this.bancoRepository.findAll().stream().map(tipoConta -> {
+        return this.tipoContaRepository.findAll().stream().map(tipoConta -> {
             TipoContaDTO tipoContaDTO = new TipoContaDTO();
             BeanUtils.copyProperties(tipoConta, tipoContaDTO);
             return tipoContaDTO;

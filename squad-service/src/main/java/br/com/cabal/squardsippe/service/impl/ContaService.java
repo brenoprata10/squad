@@ -1,12 +1,9 @@
 package br.com.cabal.squardsippe.service.impl;
 
 import br.com.cabal.squardsippe.model.Conta;
-import br.com.cabal.squardsippe.model.Usuario;
-import br.com.cabal.squardsippe.model.dto.BancoDTO;
 import br.com.cabal.squardsippe.model.dto.ContaDTO;
 import br.com.cabal.squardsippe.repository.ContaRepository;
 import br.com.cabal.squardsippe.service.IContaService;
-import br.com.cabal.squardsippe.service.UsuarioService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
