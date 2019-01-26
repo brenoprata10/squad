@@ -27,6 +27,8 @@ public class TransacaoController {
     @PostMapping(value = "/saque")
     public void gerarSaque(@RequestBody SaqueDTO saqueDTO) {
 
+        TransacaoDTO transacaoDTO = new TransacaoDTO();
+        this.transacaoService.salvar(transacaoDTO);
 
     }
 

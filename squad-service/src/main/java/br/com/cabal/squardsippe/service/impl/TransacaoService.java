@@ -38,15 +38,26 @@ public class TransacaoService implements ITransacaoService{
     @Override
     public void gerarSaque(SaqueDTO saqueDTO) {
 
+        //TODO falra service banco
+        Transacao transacao = new Transacao();
+        this.transacaoRepository.save(transacao);
     }
 
     @Override
     public void gerarTransferencia(TransacaoDTO transacaoDTO) {
 
+        //TODO falra service banco
+        Transacao transacao = new Transacao();
+        this.transacaoRepository.save(transacao);
+
     }
 
     @Override
     public void gerarDeposito(DepositoDTO depositoDTO) {
+
+        //TODO falra service banco
+        Transacao transacao = new Transacao();
+        this.transacaoRepository.save(transacao);
 
     }
 }
