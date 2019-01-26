@@ -1,17 +1,15 @@
 package br.com.cabal.squardsippe;
 
-import br.com.cabal.squardsippe.model.Transacao;
-import br.com.cabal.squardsippe.model.Usuario;
-import br.com.cabal.squardsippe.model.dto.UsuarioDTO;
-import br.com.cabal.squardsippe.repository.TransacaoRepository;
-import br.com.cabal.squardsippe.repository.UsuarioRepository;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import br.com.cabal.squardsippe.model.Transacao;
+import br.com.cabal.squardsippe.repository.TransacaoRepository;
 
 @Service
 public class TransacaoService {
