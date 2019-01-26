@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.Id;
@@ -19,6 +20,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@Entity
 @Table(name = "tb_transacao", schema = "sippe")
 public class Transacao implements Serializable {
 
