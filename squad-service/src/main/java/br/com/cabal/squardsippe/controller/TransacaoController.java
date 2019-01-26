@@ -1,8 +1,8 @@
 package br.com.cabal.squardsippe.controller;
 
-import br.com.cabal.squardsippe.TransacaoService;
 import br.com.cabal.squardsippe.model.dto.DepositoDTO;
 import br.com.cabal.squardsippe.model.dto.SaqueDTO;
+import br.com.cabal.squardsippe.service.ITransacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +15,7 @@ import java.util.List;
 public class TransacaoController {
 
     @Autowired
-    private TransacaoService transacaoService;
+    private ITransacaoService transacaoService;
 
     @GetMapping(value = "/extrato/{dataInicio}/{dataFim}/{numeroConta}")
     public List<Object> gerarExtrato(@PathVariable LocalDate dataInicio, @PathVariable LocalDate dataFim, @PathVariable String numeroConta) {
