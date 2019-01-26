@@ -1,0 +1,55 @@
+<mz-card [horizontal]="true" class="row">
+  <mz-card-title class="col s12">
+    Extrato
+  </mz-card-title>
+  <mz-card-content class="row">
+
+    <form [formGroup]="formConsulta" (submit)="pesquisarFiltro()">
+
+      <mz-input-container class="col s12 m6 l4">
+        <i mz-icon mz-input-prefix
+           [icon]="'date_range'">
+        </i>
+        <input mz-input
+               [label]="'Data Extrato'"
+               [placeholder]="' '"
+               [validate]="true"
+               [dataError]="'Data é inválida'"
+               id="data-input"
+               formControlName="dataExtrato"
+               type="date">
+      </mz-input-container>
+
+      <div class="col s12">
+        <button mz-button type="submit">
+          Pesquisar
+        </button>
+      </div>
+    </form>
+  </mz-card-content>
+</mz-card>
+
+<mz-card [horizontal]="true" *ngIf="listaExtratos?.length > 0" class="row">
+  <mz-card-content class="col s12">
+
+    <table>
+      <thead>
+      <tr>
+        <th>Data</th>
+        <th>Descrição</th>
+        <th>Valor</th>
+        <th>Tipo</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let extrato of listaExtratos">
+        <td>{{extrato?.data?.toLocaleDateString()}}</td>
+        <td>{{extrato?.descricao}}</td>
+        <td>{{extrato?.tipo}}</td>
+        <td>{{extrato?.valor | currency: 'BRL'}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </mz-card-content>
+</mz-card>

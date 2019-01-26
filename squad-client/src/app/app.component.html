@@ -1,1 +1,14 @@
-<router-outlet></router-outlet>
+<mz-navbar class="nav-bar-sippe">
+  <a href="#" class="brand-logo">Squad Sippe</a>
+  <mz-navbar-item-container [align]="'right'">
+    <mz-navbar-item><a href="#" [routerLink]="['/']">Extrato</a></mz-navbar-item>
+    <mz-navbar-item><a href="#" [routerLink]="['/saque']">Saque</a></mz-navbar-item>
+    <mz-navbar-item><a href="#">Transferência</a></mz-navbar-item>
+    <mz-navbar-item><a href="#">Depósito</a></mz-navbar-item>
+  </mz-navbar-item-container>
+</mz-navbar>
+
+<div class="main-container">
+  <router-outlet></router-outlet>
+</div>
+

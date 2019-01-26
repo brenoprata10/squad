@@ -29,6 +29,7 @@ public class TransacaoController {
         return Arrays.asList();
     }
 
+    @CrossOrigin
     @PostMapping(value = "/saque")
     public Transacao gerarSaque(@RequestBody SaqueDTO saqueDTO) {
         return this.transacaoService.gerarSaque(saqueDTO);

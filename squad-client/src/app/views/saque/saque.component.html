@@ -1,12 +1,71 @@
-<mz-navbar>
-  <a href="#" class="brand-logo">Logo</a>
-  <mz-navbar-item-container [align]="'right'">
-    <mz-navbar-item><a href="#">Sass</a></mz-navbar-item>
-    <mz-navbar-item><a href="#">Components</a></mz-navbar-item>
-    <mz-navbar-item><a routerLink="js">JavaScript</a></mz-navbar-item>
-  </mz-navbar-item-container>
-</mz-navbar>
+<mz-card [horizontal]="true" class="row">
+  <mz-card-title class="col s12">
+    Saque
+  </mz-card-title>
+  <mz-card-content class="row">
 
-<div class="teste">
-  OI
-</div>
+    <form [formGroup]="formSaque" (submit)="efetuarSaque()">
+
+      <mz-input-container class="col s12 m6 l4">
+        <i mz-icon mz-input-prefix
+           [icon]="'view_agenda'">
+        </i>
+        <input mz-input
+               [label]="'Agência *'"
+               [validate]="true"
+               [dataError]="'Agência é inválida'"
+               id="agencia-input"
+               formControlName="codigoAgencia"
+               type="text">
+      </mz-input-container>
+
+      <mz-input-container class="col s12 m6 l4">
+        <i mz-icon mz-input-prefix
+           [icon]="'supervised_user_circle'">
+        </i>
+        <input mz-input
+               [label]="'Conta *'"
+               [validate]="true"
+               [dataError]="'Conta é inválida'"
+               id="conta-input"
+               formControlName="codigoConta"
+               type="text">
+      </mz-input-container>
+
+      <mz-select-container class="col s12 m6 l4">
+        <select mz-select
+                id="banco-select"
+                [label]="'Banco'"
+                formControlName="codigoBanco">
+            <option value="{{banco.id}}" *ngFor="let banco of listaBancos">{{banco.nome}}</option>
+        </select>
+      </mz-select-container>
+
+      <mz-input-container class="col s12 m6 l4">
+        <i mz-icon mz-input-prefix
+           [icon]="'attach_money'">
+        </i>
+        <input mz-input
+               [label]="'Valor *'"
+               [placeholder]="' '"
+               [validate]="true"
+               [dataError]="'Valor é inválido'"
+               id="valor-input"
+               formControlName="valor"
+               type="text">
+      </mz-input-container>
+
+      <div class="col s12">
+        <button style="margin-right: 5px"
+                mz-button
+                type="button"
+                (click)="voltarParaTelaExtrato()">
+          Cancelar
+        </button>
+        <button mz-button type="submit">
+          Cadastrar
+        </button>
+      </div>
+    </form>
+  </mz-card-content>
+</mz-card>

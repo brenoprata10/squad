@@ -7,17 +7,13 @@ import br.com.cabal.squardsippe.model.dto.DepositoDTO;
 import br.com.cabal.squardsippe.model.dto.SaqueDTO;
 import br.com.cabal.squardsippe.model.dto.TransacaoDTO;
 import br.com.cabal.squardsippe.repository.TransacaoRepository;
-import br.com.cabal.squardsippe.service.IBancoService;
 import br.com.cabal.squardsippe.service.IContaService;
 import br.com.cabal.squardsippe.service.ITransacaoService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.Optional;
 
 @Service
@@ -48,7 +44,7 @@ public class TransacaoService implements ITransacaoService{
     @Override
     public Transacao gerarSaque(SaqueDTO saqueDTO) {
 
-        ContaDTO contaDTO = this.contaService.buscarIdUsuarioAndContaAndAgencia(saqueDTO.getCodigoUsuario(), saqueDTO.getCodigoConta(), saqueDTO.getCodigoAgencia());
+        ContaDTO contaDTO = this.contaService.buscarIdUsuarioAndContaAndAgencia(1L, saqueDTO.getCodigoConta(), saqueDTO.getCodigoAgencia());
 
 
         if (contaDTO.getSaldo().floatValue() < saqueDTO.getValor().floatValue()) {
@@ -70,6 +66,10 @@ public class TransacaoService implements ITransacaoService{
         Conta conta = new Conta();
         conta.setId(saqueDTO.getCodigoConta());
         transacao.setContaOrigem(conta);
+        transacao.setDataTransacao(LocalDateTime.now());
+        transacao.setValor(saqueDTO.getValor());
+        transacao.setDataDebito(LocalDateTime.now());
+        transacao.setCodigoAgenciaDestino(saqueDTO.getCodigoAgencia().toString());
         transacao.setSaldoAnterior(contaDTO.getSaldo().add(saqueDTO.getValor()));
         transacao.setSaldoPosterior(contaDTO.getSaldo());
         Transacao save = this.transacaoRepository.save(transacao);

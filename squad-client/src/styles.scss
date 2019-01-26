@@ -1,3 +1,30 @@
-.teste {
-  background-color: black
+$corPrimaria: rgb(0, 64, 197);
+
+.nav-wrapper  {
+  background-color: $corPrimaria !important;
+
+  .brand-logo {
+
+    margin-left: 10px !important;
+  }
+}
+
+.main-container {
+
+  padding: 20px !important;
+}
+
+mz-card {
+
+  animation: transicao .3s;
+}
+
+@keyframes transicao {
+
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

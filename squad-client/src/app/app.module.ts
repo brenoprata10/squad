@@ -1,13 +1,12 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
 
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
 import {RouterModule} from '@angular/router';
 import {AppRoutes} from './app.routes';
-import {SaqueComponent} from './views/saque/saque.component';
-import {MzNavbarModule} from 'ngx-materialize';
 import {GlobalSharedModule} from './global/global-shared.module';
+import {ExtratoModule} from './views/extrato/extrato.module';
 
 
 @NgModule({
@@ -16,6 +15,7 @@ import {GlobalSharedModule} from './global/global-shared.module';
   ],
   imports: [
     BrowserModule,
+    ExtratoModule,
     GlobalSharedModule,
     RouterModule.forRoot(AppRoutes)
   ],

@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 public class SaqueDTO implements Serializable {
 
     private Long codigoUsuario;
-    private BigDecimal Valor;
+    private BigDecimal valor;
     private Long codigoConta;
     private Long codigoAgencia;
     private Long codigoBanco;

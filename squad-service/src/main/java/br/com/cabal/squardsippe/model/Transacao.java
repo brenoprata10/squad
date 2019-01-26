@@ -7,10 +7,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -28,6 +31,7 @@ public class Transacao implements Serializable {
 
     @Id
     @Column(name = "cod_transacao")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "dt_transacao")
@@ -76,12 +80,10 @@ public class Transacao implements Serializable {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cod_tipo_movimentacao",
             foreignKey = @ForeignKey(name = "fk_transacao_tipo_movimentacao"))
-    @NotNull(message = "O tipo da movimentação não pode ser vazia")
     private TipoMovimentacao tipoMovimentacao;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cod_tipo_transacao",
             foreignKey = @ForeignKey(name = "fk_transacao_tipo_transacao"))
-    @NotNull(message = "O tipo da transação não pode ser vazia")
     private TipoTransacao tipoTransacao;
 }

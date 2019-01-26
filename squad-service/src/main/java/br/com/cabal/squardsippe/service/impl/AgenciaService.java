@@ -33,8 +33,8 @@ public class AgenciaService implements IAgenciaService {
 
     public AgenciaDTO buscarPorId(Long id) {
         Optional<Agencia> optional = this.agenciaRepository.findById(id);
-        AgenciaDTO agenciaDTO = new AgenciaDTO();
-        BeanUtils.copyProperties(optional.get(), agenciaDTO);
-        return agenciaDTO;
+//        AgenciaDTO agenciaDTO = new AgenciaDTO();
+//        BeanUtils.copyProperties(optional.get(), agenciaDTO);
+        return null;
     }
 }
